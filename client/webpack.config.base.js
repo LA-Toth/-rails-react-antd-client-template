@@ -59,7 +59,7 @@ module.exports = (attrs = {}, options = {}) => {
     output: {
       filename: '[name].js',
       sourceMapFilename: '[file].map',
-      path: path.resolve(__dirname, 'public'),
+      path: path.resolve(__dirname, '../public'),
       publicPath: 'auto',
     },
     plugins: [
@@ -78,7 +78,7 @@ module.exports = (attrs = {}, options = {}) => {
     },
     devServer: {
       static: {
-        directory: path.join(__dirname, 'public'),
+        directory: path.join(__dirname, '../public'),
       },
       //contentBase: path.join(__dirname, 'dist'),
       compress: true,
