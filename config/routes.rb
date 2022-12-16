@@ -3,4 +3,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  get '*path', to: "root#fallback_index_html", constraints: ->(request) do
+    !request.xhr? && request.format.html?
+  end
 end
