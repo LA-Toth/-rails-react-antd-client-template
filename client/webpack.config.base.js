@@ -1,28 +1,25 @@
-const path = require("path")
-const webpack = require("webpack")
+const path = require('path')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+// eslint-disable-next-line immutable/no-mutation
 module.exports = (attrs = {}, options = {}) => {
   const mode = attrs.mode || 'production'
   return {
     mode,
-    devtool: "source-map",
+    devtool: 'source-map',
     entry: {
-      application: "./src/application.tsx"
+      application: './src/application.tsx',
     },
     module: {
       rules: [
         {
           test: /\.tsx?$/,
           use: {
-            loader: "babel-loader",
+            loader: 'babel-loader',
             options: {
-              presets: [
-                "@babel/preset-env",
-                "@babel/preset-react",
-                "@babel/preset-typescript",
-              ],
-            }
+              presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
+            },
           },
           exclude: /node_modules/,
         },
@@ -67,23 +64,22 @@ module.exports = (attrs = {}, options = {}) => {
         template: path.resolve(__dirname, './src/index.html'),
       }),
       new webpack.optimize.LimitChunkCountPlugin({
-        maxChunks: 1
+        maxChunks: 1,
       }),
       new webpack.ProvidePlugin({
         React: 'react',
       }),
     ],
     resolve: {
-      extensions: ['.ts', '.tsx', '.js', '.json']
+      extensions: ['.ts', '.tsx', '.js', '.json'],
     },
     devServer: {
       static: {
         directory: path.join(__dirname, '../public'),
       },
-      //contentBase: path.join(__dirname, 'dist'),
+      // contentBase: path.join(__dirname, 'dist'),
       compress: true,
       port: 9000,
     },
-
   }
 }
